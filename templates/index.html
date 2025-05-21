@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platinum Phone Investigator | نظام كشف المعلومات الماسي</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <style>
+        :root {
+            --platinum: #E5E4E2;
+            --diamond: #B9F2FF;
+            --space-cadet: #1A1A2E;
+            --imperial-red: #E63946;
+            --rich-black: #0D1B2A;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%);
+            color: var(--platinum);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .neon-bar {
+            height: 4px;
+            background: linear-gradient(90deg, 
+                rgba(0,0,0,0) 0%, 
+                var(--diamond) 20%, 
+                var(--platinum) 50%, 
+                var(--diamond) 80%, 
+                rgba(0,0,0,0) 100%);
+            box-shadow: 0 0 10px var(--diamond);
+            margin-bottom: 2rem;
+        }
+        
+        .cyber-header {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--diamond);
+            box-shadow: 0 0 20px rgba(181, 242, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cyber-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                var(--diamond), 
+                var(--platinum), 
+                var(--diamond));
+            animation: scanline 3s linear infinite;
+        }
+        
+        @keyframes scanline {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(100vh); }
+        }
+        
+        .holographic-card {
+            background: rgba(13, 27, 42, 0.7);
+            border: 1px solid rgba(185, 242, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .holographic-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(185, 242, 255, 0) 0%,
+                rgba(185, 242, 255, 0.1) 50%,
+                rgba(185, 242, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: holographic 6s linear infinite;
+        }
+        
+        @keyframes holographic {
+            0% { transform: rotate(30deg) translate(-30%, -30%); }
+            100% { transform: rotate(30deg) translate(30%, 30%); }
+        }
+        
+        .cyber-btn {
+            background: linear-gradient(135deg, 
+                rgba(185, 242, 255, 0.8) 0%, 
+                rgba(229, 228, 226, 0.9) 100%);
+            color: var(--rich-black);
+            border: none;
+            padding: 12px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(185, 242, 255, 0.4);
+            border: 1px solid rgba(229, 228, 226, 0.5);
+        }
+        
+        .cyber-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(185, 242, 255, 0.6);
+            color: var(--rich-black);
+        }
+        
+        .cyber-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(229, 228, 226, 0) 0%,
+                rgba(229, 228, 226, 0.3) 50%,
+                rgba(229, 228, 226, 0) 100%
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s;
+        }
+        
+        .cyber-btn:hover::after {
+            left: 100%;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .data-item {
+            background: rgba(26, 26, 46, 0.6);
+            border-left: 3px solid var(--diamond);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .data-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .data-label {
+            color: var(--diamond);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .data-value {
+            font-size: 1.1rem;
+            word-break: break-word;
+        }
+        
+        .spam-alert {
+            animation: pulse 2s infinite;
+            border-radius: 50px;
+            padding: 0.2rem 1rem;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(230, 57, 70, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+        }
+        
+        .cyber-input {
+            background: rgba(26, 26, 46, 0.7);
+            border: 1px solid rgba(185, 242, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .cyber-input:focus {
+            background: rgba(26, 26, 46, 0.9);
+            border-color: var(--diamond);
+            box-shadow: 0 0 0 0.25rem rgba(185, 242, 255, 0.25);
+            color: white;
+        }
+        
+        .cyber-footer {
+            background: rgba(13, 27, 42, 0.9);
+            border-top: 1px solid rgba(185, 242, 255, 0.3);
+            position: relative;
+        }
+        
+        .cyber-footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--diamond) 50%, 
+                transparent 100%);
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: var(--diamond);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط نيون علوي -->
+    <div class="neon-bar"></div>
+
+    <!-- الهيدر -->
+    <header class="cyber-header py-4 mb-5 position-relative">
+        <div class="container text-center position-relative">
+            <div class="logo mb-3">
+                <i class="fas fa-atom fa-3x" style="color: var(--diamond); text-shadow: 0 0 15px rgba(185, 242, 255, 0.7);"></i>
+            </div>
+            <h1 class="display-4 mb-3" style="color: var(--platinum); text-shadow: 0 0 10px rgba(229, 228, 226, 0.5);">
+                نظام كشف المعلومات الماسي
+            </h1>
+            <p class="lead" style="color: var(--diamond);">
+             تصميم و تطوير /عزيز عماد 
+             <P> غير مسؤول عن الاستخدام الغير قانوني </P>
+            </p>
+        </div>
+        
+        <!-- تأثير الجسيمات -->
+        <div class="particles" id="particles-js"></div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container my-5">
+        <!-- بطاقة البحث -->
+        <div class="holographic-card card p-4 mb-5 animate__animated animate__fadeInUp">
+            <div class="card-body text-center">
+                <h3 class="mb-4" style="color: var(--diamond);">
+                    <i class="fas fa-satellite-dish feature-icon"></i> وحدة الاستعلام المتقدم
+                </h3>
+                
+                <form method="POST" class="mx-auto" style="max-width: 600px;">
+                    <div class="mb-4">
+                        <label for="phone_number" class="form-label d-block mb-3" style="color: var(--platinum); font-size: 1.2rem;">
+                            <i class="fas fa-phone-alt me-2"></i> أدخل الرقم المستهدف
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text cyber-input">+</span>
+                            <input type="tel" class="form-control cyber-input" 
+                                   id="phone_number" name="phone_number"
+                                   placeholder="مثال: 201234567890" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn cyber-btn mt-3 px-5 py-3">
+                        <i class="fas fa-search me-2"></i> بدء التحليل
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- نتائج البحث -->
+        {% if error %}
+        <div class="alert alert-danger text-center animate__animated animate__shakeX" style="background: rgba(230, 57, 70, 0.2); border: 1px solid var(--imperial-red); color: var(--platinum);">
+            <i class="fas fa-exclamation-triangle me-2"></i> {{ error }}
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="holographic-card card p-4 animate__animated animate__fadeIn">
+            <div class="card-header bg-transparent border-bottom" style="border-color: rgba(185, 242, 255, 0.3) !important;">
+                <div class="text-center py-3">
+                    <h2 style="color: var(--diamond);">
+                        <i class="fas fa-file-contract me-2"></i> تقرير الاستخبارات
+                    </h2>
+                    <div class="mt-3" style="font-size: 1.5rem; font-weight: 700; color: var(--platinum);">
+                        <i class="fas fa-phone me-2" style="color: var(--diamond);"></i> {{ phone_number }}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <div class="data-grid mt-4">
+                    {% for key, value in result.items() %}
+                    <div class="data-item">
+                        <div class="data-label">
+                            <i class="fas fa-circle-small me-2"></i> {{ key }}
+                        </div>
+                        <div class="data-value {% if 'Spam' in key and value == 'نعم' %}spam-alert" style="background: rgba(230, 57, 70, 0.2); color: var(--imperial-red);{% else %}" style="color: var(--platinum);{% endif %}">
+                            {{ value }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="cyber-footer py-5 mt-5">
+        <div class="container text-center">
+            <div class="mb-4">
+                <i class="fas fa-shield-alt fa-2x" style="color: var(--diamond);"></i>
+            </div>
+            <p class="mb-2" style="color: var(--platinum);">نظام التحليل المتقدم - الإصدار الماسي</p>
+            <p class="mb-0" style="color: var(--diamond);">
+                <i class="far fa-copyright"></i> 2023 جميع الحقوق محفوظة | Platinum Systems
+            </p>
+        </div>
+    </footer>
+
+    <!-- المكتبات المطلوبة -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    
+    <!-- الإعدادات الخاصة -->
+    <script>
+        // إضافة + تلقائيًا عند الكتابة
+        document.getElementById('phone_number').addEventListener('input', function(e) {
+            if (this.value.length === 1 && this.value !== '+2') {
+                this.value = '+2' + this.value;
+            }
+        });
+
+        // إنشاء تأثير الجسيمات
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles-js');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // تحديد عشوائي للخصائص
+                const size = Math.random() * 5 + 1;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // تشغيل التأثيرات عند التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // تأثيرات الظهور التدريجي
+            const elements = document.querySelectorAll('.animate__animated');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = 1;
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>
